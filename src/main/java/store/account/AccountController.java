@@ -23,6 +23,11 @@ public interface AccountController {
         @PathVariable("id") String id
     );
 
+    @PostMapping("/account/login")
+    public ResponseEntity<AccountOut> findByEmailAndPassword(
+        @RequestBody AccountIn in
+    );
+
     @GetMapping("/account")
     public ResponseEntity<List<AccountOut>> findAll();
 
