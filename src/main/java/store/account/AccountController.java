@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @FeignClient(name = "account", url = "http://account:8080")
 public interface AccountController {
@@ -34,6 +35,11 @@ public interface AccountController {
     @DeleteMapping("/account/{id}")
     public ResponseEntity<Void> delete(
         @PathVariable("id") String id
+    );
+
+    @GetMapping("/account/whoami")
+    public ResponseEntity<AccountOut> whoAmI(
+        @RequestHeader(value = "id-account", required = true) String idAccount
     );
 
 }
